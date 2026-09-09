@@ -7,7 +7,6 @@ PyTorch; inference on the FPGA is **pure integer arithmetic** — no floating po
 
 | Metric | Value |
 |---|---|
-| Test accuracy (PyTorch, float QAT) | **96.87%** |
 | Test accuracy (integer / FPGA path) | **96.86%** |
 | Topology | `784 → 64 → 10` |
 | Total parameters | 50,890 |

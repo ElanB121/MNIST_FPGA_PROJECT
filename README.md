@@ -2,8 +2,7 @@
 
 A deliberately simple **3-layer perceptron** (`784 → hidden → 10`) trained on
 **black-and-white MNIST** with **signed 8-bit integer weights**, so it can be
-loaded straight onto an FPGA. Training uses quantization-aware training (QAT) in
-PyTorch; inference on the FPGA is **pure integer arithmetic** — no floating point.
+loaded straight onto an FPGA.
 
 | Metric | Value |
 |---|---|
@@ -14,10 +13,6 @@ PyTorch; inference on the FPGA is **pure integer arithmetic** — no floating po
 | Bias type | `int32` |
 | Hidden accumulator width | 12-bit signed |
 | Output (logit) accumulator width | 20-bit signed |
-
-> The **integer/FPGA** accuracy is the number that matters for hardware: it runs the
-> exported int8 weights through exact integer multiply-accumulate, exactly what the
-> FPGA computes. It matches the PyTorch model to within rounding.
 
 ---
 

@@ -1,0 +1,12 @@
+{
+  "hidden": 64,
+  "bits": 8,
+  "threshold": 0.5,
+  "epochs": 20,
+  "lr": 0.001,
+  "batch_size": 128,
+  "test_acc_int": 0.9686,
+  "train_acc_int": 0.9972,
+  "hidden_accum_bits": 12,
+  "logit_accum_bits": 20
+}

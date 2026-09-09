@@ -1,0 +1,14 @@
+# Downloaded MNIST dataset (fetched on first run)
+data/
+
+# PDF report (not tracked; the README covers everything)
+*.pdf
+
+# Python caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/

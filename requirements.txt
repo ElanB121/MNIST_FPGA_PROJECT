@@ -1,0 +1,11 @@
+# Python 3.10-3.12
+#
+# GPU (CUDA 12.4) build -- install with the PyTorch index:
+#   pip install --index-url https://download.pytorch.org/whl/cu124 torch torchvision
+# CPU-only build -- install from the default index:
+#   pip install torch torchvision
+#
+# Pinned to the versions this project was developed with:
+torch>=2.6
+torchvision>=0.21
+numpy>=2.0

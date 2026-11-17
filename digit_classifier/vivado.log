@@ -4,10 +4,10 @@ INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detect
 # SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
 # IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
 # SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
-# Start of session at: Fri Nov 13 17:56:19 2026
-# Process ID         : 18124
+# Start of session at: Tue Nov 17 10:04:55 2026
+# Process ID         : 25408
 # Current directory  : C:/Users/littl/digit_classifier
-# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent29636 C:\Users\littl\digit_classifier\digit_classifier.xpr
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent3996 C:\Users\littl\digit_classifier\digit_classifier.xpr
 # Log file           : C:/Users/littl/digit_classifier/vivado.log
 # Journal file       : C:/Users/littl/digit_classifier\vivado.jou
 # Running On         : College-Chair
@@ -18,9 +18,9 @@ INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detect
 # CPU Physical cores : 12
 # CPU Logical cores  : 14
 # Host memory        : 16587 MB
-# Swap memory        : 18253 MB
-# Total Virtual      : 34841 MB
-# Available Virtual  : 13782 MB
+# Swap memory        : 19334 MB
+# Total Virtual      : 35921 MB
+# Available Virtual  : 5891 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/littl/digit_classifier/digit_classifier.xpr
@@ -30,7 +30,7 @@ Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2026.1/Vivado/data/ip'.
-open_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:16 . Memory (MB): peak = 1704.684 ; gain = 324.457
+open_project: Time (s): cpu = 00:00:50 ; elapsed = 00:00:33 . Memory (MB): peak = 1716.723 ; gain = 332.207
 update_compile_order -fileset sources_1
 exit
-INFO: [Common 17-206] Exiting Vivado at Fri Nov 13 17:57:25 2026...
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 10:07:04 2026...

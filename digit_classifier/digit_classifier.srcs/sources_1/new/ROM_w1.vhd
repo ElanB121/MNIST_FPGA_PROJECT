@@ -1,14 +1,14 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: Unviersity of South Florida
+-- Engineers: Marcos Pollan and Elan Berezovskiy 
 -- 
 -- Create Date: 11/13/2026 03:43:26 PM
--- Design Name: 
+-- Design Name: ROM_w1
 -- Module Name: ROM - Behavioral
 -- Project Name: 
--- Target Devices: 
+-- Target Devices: Zedboard
 -- Tool Versions: 
--- Description: 
+-- Description: Reading from file w1.mem to access weights related to digit images
 -- 
 -- Dependencies: 
 -- 
@@ -23,6 +23,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_textio.all;
 library std;
 use std.textio.all;
 
@@ -38,34 +39,36 @@ use std.textio.all;
 entity ROM_w1 is
     Port ( clk : in STD_LOGIC;
            en : in STD_LOGIC;
-           addr : in STD_LOGIC_VECTOR (15 downto 0);
+           addr : in STD_LOGIC_VECTOR (15 downto 0); -- 16-bit address to access the 50,176 elements in w1.mem
            data : out STD_LOGIC_VECTOR(7 downto 0)
        );
 end ROM_w1;
 
 architecture Behavioral of ROM_w1 is
 
-    type RomType is array (0 to 50175) of bit_vector(7 downto 0);
+    type RomType is array (0 to 50175) of std_logic_vector(7 downto 0);
     
     impure function InitRomFromFile (RomFileName : in string) return RomType is
-        FILE RomFile : text is in RomFileName;
+        file RomFile : text is in RomFileName;
         variable RomFileLine : line;
         variable ROM : RomType;
     begin
         for I in RomType'range loop
-            readline (RomFile, RomFileLine);
-            read (RomFileLine, ROM(I)); 
+            readline(RomFile, RomFileLine);
+            hread(RomFileLine, ROM(I)); -- Read the 2 hexadecimal digits from w1.mem (VHDL 2008)
         end loop;
         return ROM;
     end function;
     
-    signal ROM : RomType := InitRomFromFile("w1.mem");
-        
+    constant ROM : RomType := InitRomFromFile("w1.mem"); -- constant forces ROM behavior
+    
 begin
     process(clk)
     begin
-        if rising_edge(clk) then 
-            data <= ROM(to_integer(unsigned(addr)));
+        if rising_edge(clk) then
+            if (en = '1') then
+                data <= ROM(to_integer(unsigned(addr)));
+            end if;
         end if;
     end process;
 

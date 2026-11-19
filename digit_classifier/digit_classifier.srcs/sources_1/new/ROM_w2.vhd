@@ -40,7 +40,7 @@ entity ROM_w2 is
     Port ( clk : in STD_LOGIC;
            en : in STD_LOGIC;
            addr : in STD_LOGIC_VECTOR (9 downto 0); -- 9-bit address to access the 640 elements in w2.mem
-           data : out STD_LOGIC_VECTOR(7 downto 0)  -- 8-bit data width to hold 2 hex digits
+           data : in STD_LOGIC_VECTOR(7 downto 0)  -- 8-bit data width to hold 2 hex digits
        );
 end ROM_w2;
 

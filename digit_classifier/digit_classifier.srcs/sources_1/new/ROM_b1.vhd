@@ -40,7 +40,7 @@ entity ROM_b1 is
     Port ( clk : in STD_LOGIC;
            en : in STD_LOGIC;
            addr : in STD_LOGIC_VECTOR (5 downto 0); -- 6-bit address to access the 64 elements in b1.mem
-           data : in STD_LOGIC_VECTOR(31 downto 0) -- 32-bit data width to hold 8 hex digits
+           data : out STD_LOGIC_VECTOR(31 downto 0) -- 32-bit data width to hold 8 hex digits
        );
 end ROM_b1;
 

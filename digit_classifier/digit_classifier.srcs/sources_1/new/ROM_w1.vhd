@@ -40,7 +40,7 @@ entity ROM_w1 is
     Port ( clk : in STD_LOGIC;
            en : in STD_LOGIC;
            addr : in STD_LOGIC_VECTOR (15 downto 0); -- 16-bit address to access the 50,176 elements in w1.mem
-           data : in STD_LOGIC_VECTOR(7 downto 0)
+           data : out STD_LOGIC_VECTOR(7 downto 0)
        );
 end ROM_w1;
 

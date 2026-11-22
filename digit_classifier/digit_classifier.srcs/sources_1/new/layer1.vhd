@@ -44,8 +44,9 @@ end layer1;
 architecture Behavioral of layer1 is
     type state_type is (IDLE, ADDR, WAIT_ROM, MAC, DONE);
     signal state : state_type := IDLE;
-    signal i : integer range 0 to 783 := 0;
-    signal j : integer range 0 to 63 := 0;
+    signal i : integer range 0 to 783 := 0; -- going through image pixels
+    signal j : integer range 0 to 63 := 0;  -- goind through h neurons
+    signal k : integer range 0 to 15 := 0;  -- going through the 16 images
     signal clk : STD_LOGIC;
     signal img_en : STD_LOGIC;
     signal img_addr : STD_LOGIC_VECTOR(3 downto 0);
@@ -86,19 +87,34 @@ begin
     process(clk)
         variable acc : signed(15 downto 0) := (others => '0'); -- 16-bit data width worst case
     begin
+        w1_en <= '1';
+        b1_en <= '1';
+        img_en <= '1'; 
         if rising_edge(clk) then
             -- FSM to access w1 and b1, multiply and accumulate, then store h neurons in RAM
             case state is
                 when IDLE =>
-                    
+                    i <= 0;
+                    j <= 0;
+                    k <= 0;
+                    state <= ADDR;
                     
                 when ADDR =>
                     -- setup address for accessing w1 and b1
+                    w1_addr <= std_logic_vector(to_unsigned(784*j + i, 16));
+                    img_addr <= std_logic_vector(to_unsigned(k, 4)); 
+                    
+                    state <= WAIT_ROM;
+                    
                 
                 when WAIT_ROM =>
-                
+                    state <= MAC;
                 
                 when MAC =>
+                    b1_addr <= std_logic_vector(to_unsigned(j, 6));
+                    if i < 784 then
+                        if img_data(i) then
+                            acc := acc + to_signed(w1_data, 8); 
                 
                 
                 when DONE =>

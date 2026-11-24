@@ -21,8 +21,8 @@
 
 
 module golden_image_testbench();
-
-    reg signed [31:0] gold_h [0:63];
+    integer j;
+    reg unsigned [15:0] gold_h [0:63];
     initial $readmemh("golden_img0_hidden.mem", gold_h);
     // after layer 1 finishes:
     for (j = 0; j < 64; j = j + 1)

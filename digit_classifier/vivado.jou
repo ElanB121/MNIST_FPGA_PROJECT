@@ -3,10 +3,10 @@
 # SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
 # IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
 # SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
-# Start of session at: Sun Nov 22 13:23:01 2026
-# Process ID         : 16176
+# Start of session at: Sun Nov 22 15:44:50 2026
+# Process ID         : 19428
 # Current directory  : C:/Users/littl/digit_classifier1
-# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent27636 C:\Users\littl\digit_classifier1\digit_classifier.xpr
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent13020 C:\Users\littl\digit_classifier1\digit_classifier.xpr
 # Log file           : C:/Users/littl/digit_classifier1/vivado.log
 # Journal file       : C:/Users/littl/digit_classifier1\vivado.jou
 # Running On         : College-Chair
@@ -19,7 +19,7 @@
 # Host memory        : 16587 MB
 # Swap memory        : 18291 MB
 # Total Virtual      : 34879 MB
-# Available Virtual  : 3819 MB
+# Available Virtual  : 3779 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/littl/digit_classifier1/digit_classifier.xpr

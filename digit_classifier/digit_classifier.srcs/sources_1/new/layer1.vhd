@@ -114,12 +114,6 @@ begin
     
     begin
         
-        w1_en <= '1';
-        b1_en <= '1';
-        h_en <= '1';
-        h_we <= '1';
-        img_en <= '1';
-        
         if rising_edge(clk) then
             -- FSM to access w1 and b1, multiply and accumulate, then store h neurons in RAM
             case state is
@@ -127,24 +121,27 @@ begin
                     i <= 0;
                     j <= 0;
                     k <= 0;
+                    w1_en <= '1';
+                    b1_en <= '1';
+                    h_en <= '1';
+                    h_we <= '1';
+                    img_en <= '1';
+        
+                    -- add condition to check if start = '1'
                     state <= ADDR;
                     
                 when ADDR =>
                     -- setup address for accessing w1 and b1
                     w1_addr <= std_logic_vector(to_unsigned(784*j + i, 16));
-                    img_addr <= std_logic_vector(to_unsigned(k, 4));
-                    b1_addr <= (others => '0');
-                    h_addr <= (others => '0');
+                    img_addr <= std_logic_vector(to_unsigned(k, 4)); -- this should probably be an input to the layer to choose the desired image
+                    b1_addr <= std_logic_vector(to_unsigned(j, 6));
+                    h_addr <= std_logic_vector(to_unsigned(j, 6));
                     
                     state <= WAIT_ROM;
                 
                 when WAIT_ROM =>
-                    if b1_addr /= "0" then
-                        state <= CALC_H;
-                    
-                    else
-                        state <= MAC;
-                    end if;
+                
+                    state <= MAC;
                     
                 when MAC =>
                     if i < 784 then
@@ -153,17 +150,17 @@ begin
                         end if;
                         
                         i <= i + 1;
+                        
+                        state <= ADDR;
                     
                     else
-                        b1_addr <= std_logic_vector(to_unsigned(j, 6));
-                    
+                        i <= 0;
+                        state <= CALC_H;
                     end if;
-                    
-                    state <= WAIT_ROM;
                     
                 when CALC_H =>
                     if j < 64 then                 
-                        h_di_intermediate := acc + signed(b1_data);
+                        h_di_intermediate := acc + signed(b1_data); -- b1_data should be loaded by now initially 
                     
                         if (h_di_intermediate < 0) then
                             h_di <= (others => '0');
@@ -174,6 +171,8 @@ begin
                         end if; 
                         
                         j <= j + 1;
+                        
+                        state <= ADDR;
                 
                     else
                         state <= DONE;
@@ -182,6 +181,11 @@ begin
                     
                 when DONE =>  -- store h in RAM
                     l1_valid <= '1'; -- sets layer 1 valid to 1. only reached if CALC_H completes     
+                    w1_en <= '0';
+                    b1_en <= '0';
+                    h_en <= '0';
+                    h_we <= '0';
+                    img_en <= '0';
             
             end case;
         end if;    
